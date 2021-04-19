@@ -162,8 +162,8 @@ const Wrapper = styled.div`
   border-radius: 50%;
   margin-left: 5px;
   margin-bottom: 5px;
-  width: 38px;
-  height: 38px;
+  width: ${({ theme }) => theme.sizes.height};
+  height: ${({ theme }) => theme.sizes.height};
   transition: all 0.15s ease-in-out;
   text-align: center;
   display: flex;
@@ -175,8 +175,12 @@ const Wrapper = styled.div`
   user-select: none;
 
   &:hover {
-    background-color: ${({ theme }) => theme.primary.light};
-    color: ${({ theme }) => theme.grey[700]};
+    background-color: ${({ theme }) =>
+      theme.range.hover ? theme.range.hover : theme.primary.dark};
+    color: ${({ theme }) =>
+      theme.range.selectedTextColor
+        ? theme.range.selectedTextColor
+        : theme.grey[700]};
     &.disable {
       cursor: default;
       background-color: transparent;
@@ -213,12 +217,22 @@ const Wrapper = styled.div`
     }
   }
   &.selected {
-    color: #fff;
-    background-color: ${props => props.theme.primary.dark};
-    box-shadow: 0px 10px 30px -12px ${props => props.theme.primary.main};
+    color: ${({ theme }) =>
+      theme.range.selectedTextEndColor
+        ? theme.range.selectedTextEndColor
+        : theme.range.selectedTextColor
+        ? theme.range.selectedTextColor
+        : "#fff"};
+    background-color: ${({ theme }) =>
+      theme.range.selectedEndColor
+        ? theme.range.selectedEndColor
+        : theme.primary.main};
 
     &:hover {
-      background-color: ${props => props.theme.primary.main};
+      background-color: ${({ theme }) =>
+        theme.range.selectedHoverColor
+          ? theme.range.selectedHoverColor
+          : theme.primary.main};
       &.disable {
         color: #fff;
       }

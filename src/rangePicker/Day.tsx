@@ -227,8 +227,8 @@ export const Day = ({
 };
 
 const Wrapper = styled.div`
-  width: 40px;
-  height: 40px;
+  width: ${({ theme }) => theme.sizes.height};
+  height: ${({ theme }) => theme.sizes.height};
   transition: all 0.15s ease-in-out;
   text-align: center;
   display: flex;
@@ -239,8 +239,12 @@ const Wrapper = styled.div`
   cursor: pointer;
   color: ${({ theme }) => theme.grey[900]};
   &:hover {
-    background-color: ${({ theme }) => theme.primary.light};
-    color: ${({ theme }) => theme.grey[700]};
+    background-color: ${({ theme }) =>
+      theme.range.hover ? theme.range.hover : theme.primary.dark};
+    color: ${({ theme }) =>
+      theme.range.selectedTextColor
+        ? theme.range.selectedTextColor
+        : theme.grey[700]};
     &.disable {
       background-color: transparent;
       color: ${({ theme }) => theme.grey[900]};
@@ -279,50 +283,87 @@ const Wrapper = styled.div`
   }
 
   &.range-select {
-    background-color: ${({ theme }) => theme.primary.dark};
+    background-color: ${({ theme }) =>
+      theme.range.selected ? theme.range.selected : theme.primary.dark};
     color: #fff;
     border: 0;
     border-radius: 0;
 
     &:hover {
-      background-color: ${({ theme }) => theme.primary.dark};
+      background-color: ${({ theme }) =>
+        theme.range.hover ? theme.range.hover : theme.primary.dark};
       color: #fff;
-    }
-    box-shadow: 0px 10px 30px -12px ${({ theme }) => theme.primary.dark};
-
-    &.jalali {
-      box-shadow: 0px 10px 30px -12px ${({ theme }) => theme.primary.dark};
     }
 
     &.end-date {
-      border-top-right-radius: 25px;
-      border-bottom-right-radius: 25px;
+      background-color: ${({ theme }) =>
+        theme.range.selectedEndColor
+          ? theme.range.selectedEndColor
+          : theme.primary.main};
+      color: ${({ theme }) =>
+        theme.range.selectedTextEndColor
+          ? theme.range.selectedTextEndColor
+          : theme.range.selectedTextColor
+          ? theme.range.selectedTextColor
+          : "#fff"};
+      border-top-right-radius: ${({ theme }) =>
+        theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
+      border-bottom-right-radius: ${({ theme }) =>
+        theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
 
       &.jalali {
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
+        border-top-left-radius: ${({ theme }) =>
+          theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
+        border-bottom-left-radius: ${({ theme }) =>
+          theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
       }
     }
 
     &.start-date {
-      border-top-left-radius: 25px;
-      border-bottom-left-radius: 25px;
+      background-color: ${({ theme }) =>
+        theme.range.selectedEndColor
+          ? theme.range.selectedEndColor
+          : theme.primary.main};
+      color: ${({ theme }) =>
+        theme.range.selectedTextEndColor
+          ? theme.range.selectedTextEndColor
+          : theme.range.selectedTextColor
+          ? theme.range.selectedTextColor
+          : "#fff"};
+      border-top-left-radius: ${({ theme }) =>
+        theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
+      border-bottom-left-radius: ${({ theme }) =>
+        theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
 
       &.jalali {
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 25px;
+        border-top-right-radius: ${({ theme }) =>
+          theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
+        border-bottom-right-radius: ${({ theme }) =>
+          theme.sizes.selectedRadius ? theme.sizes.selectedRadius : "25px"};
       }
     }
   }
 
   &.same {
-    border-top-left-radius: 25px !important;
-    border-bottom-left-radius: 25px !important;
-    border-top-right-radius: 25px !important;
-    border-bottom-right-radius: 25px !important;
+    border-top-left-radius: ${({ theme }) =>
+      theme.sizes.selectedRadius
+        ? theme.sizes.selectedRadius
+        : "25px"} !important;
+    border-bottom-left-radius: ${({ theme }) =>
+      theme.sizes.selectedRadius
+        ? theme.sizes.selectedRadius
+        : "25px"} !important;
+    border-top-right-radius: ${({ theme }) =>
+      theme.sizes.selectedRadius
+        ? theme.sizes.selectedRadius
+        : "25px"} !important;
+    border-bottom-right-radius: ${({ theme }) =>
+      theme.sizes.selectedRadius
+        ? theme.sizes.selectedRadius
+        : "25px"} !important;
   }
 `;

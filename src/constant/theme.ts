@@ -13,6 +13,20 @@ export const theme = {
   },
   text: {
     disabled: "#BABABA",
+    header: "#fff",
+  },
+  range: {
+    selected: "#12baa9",
+    hover: "#12baa9",
+    selectedHoverColor: "#12baa9",
+    selectedEndColor: "#12baa9",
+    selectedTextEndColor: "#fff",
+    selectedTextColor: "#fff",
+  },
+  sizes: {
+    height: "40px",
+    selectedRadius: "25px",
+    button: "10px",
   },
 };
 
@@ -31,5 +45,19 @@ export interface Theme {
   };
   text: {
     disabled: string;
+    header: string;
+  };
+  range: {
+    selected: string;
+    hover: string;
+    selectedHoverColor: string;
+    selectedEndColor: string;
+    selectedTextEndColor: string;
+    selectedTextColor: string;
+  };
+  sizes: {
+    height: string;
+    selectedRadius: string;
+    button: string;
   };
 }

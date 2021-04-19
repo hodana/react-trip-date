@@ -39,6 +39,8 @@ export interface DatePickerProps {
   onChange: DatePickerOnChange;
   initialMonthAndYear?: string;
   onRangeDateInScreen?: DatePickerWindowUpdated;
+  RightButtonComponent?: React.ComponentType | undefined;
+  LeftButtonComponent?: React.ComponentType | undefined;
 }
 
 export type DeepPartial<T> = {

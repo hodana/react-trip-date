@@ -71,6 +71,17 @@ stories.add("Theme", () => {
     text: {
       disabled: "#BABABA",
     },
+    range: {
+      selected: "#00ff00",
+      hover: "#ff0000",
+      selectedEndColor: "#00ff00",
+      selectedTextEndColor: "#fff",
+      selectedTextColor: "#fff",
+    },
+    sizes: {
+      height: "30px",
+      selectedRadius: "10px",
+    },
   };
 
   return (

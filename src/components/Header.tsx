@@ -14,6 +14,8 @@ type Props = {
   components?: DatePickerComponents;
   setDisplayMonths: Dispatch<SetStateAction<boolean>>;
   setSource: Dispatch<SetStateAction<Dayjs>>;
+  RightButtonComponent?: React.ComponentType;
+  LeftButtonComponent?: React.ComponentType;
 };
 
 export const Header = ({
@@ -24,6 +26,8 @@ export const Header = ({
   displayMonths,
   numberOfMonths,
   setDisplayMonths,
+  RightButtonComponent,
+  LeftButtonComponent,
 }: Props) => {
   const prevMonth = () => {
     if (displayMonths) {
@@ -46,7 +50,11 @@ export const Header = ({
 
     if (displayMonths) {
       return (
-        <p key={Math.random()} onClick={() => setDisplayMonths(prev => !prev)}>
+        <p
+          id="display-month"
+          key={Math.random()}
+          onClick={() => setDisplayMonths(prev => !prev)}
+        >
           {source.format(
             components?.header?.format
               ? components?.header?.format
@@ -76,21 +84,30 @@ export const Header = ({
     }
     return titles;
   };
-
+  function RightButton() {
+    return RightButtonComponent ? <RightButtonComponent /> : <ArrowRight />;
+  }
+  function LeftButton() {
+    return LeftButtonComponent ? (
+      <LeftButtonComponent />
+    ) : (
+      <ArrowLeft className={"next-month"} />
+    );
+  }
   return (
     <Wrapper
       numberOfMonths={numberOfMonths}
       jalali={jalali}
       displayMonths={displayMonths}
     >
-      <div className="action right" onClick={prevMonth}>
-        <ArrowRight />
-        {displayMonths ? <ArrowRight /> : null}
+      <div className="action right" onClick={prevMonth} id="next">
+        <RightButton />
+        {displayMonths ? <RightButton /> : null}
       </div>
       {renderTitles()}
-      <div className="action left" onClick={nextMonth}>
-        <ArrowLeft />
-        {displayMonths ? <ArrowLeft className={"next-month"} /> : null}
+      <div className="action left" onClick={nextMonth} id="perv">
+        <LeftButton />
+        {displayMonths ? <LeftButton /> : null}
       </div>
     </Wrapper>
   );
@@ -111,17 +128,18 @@ const Wrapper = styled.div<WrapperProps>`
   background-color: ${({ theme }) => theme.primary.main};
   flex-direction: ${({ jalali }) => (jalali ? "row-reverse" : "row")};
   p {
-    color: #fff;
+    color: ${({ theme }) => theme.text.header};
     text-align: center;
     cursor: pointer;
     direction: ${({ jalali }) => (jalali ? "ltr" : "rtl")};
     width: ${({ numberOfMonths, displayMonths }) =>
       displayMonths ? "100%" : `${100 / numberOfMonths}% `};
+    font-family: ${({ jalali }) => (jalali ? "IRANSans" : undefined)};
   }
   .action {
     position: absolute;
-    height: 55px;
-    width: 55px;
+    height: ${({ theme }) => theme.sizes.button};
+    width: ${({ theme }) => theme.sizes.button};
     display: flex;
     align-items: center;
     justify-content: center;

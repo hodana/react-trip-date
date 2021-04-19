@@ -30,7 +30,11 @@ export const DisplayMonths = ({
     }
     return months.map(item => {
       return (
-        <div key={item.format("MM-MMMM")} onClick={() => selectMonth(item)}>
+        <div
+          key={item.format("MM-MMMM")}
+          onClick={() => selectMonth(item)}
+          data-title={item.format("MMMM")}
+        >
           <p>{item.format("MMMM")}</p>
         </div>
       );
@@ -62,6 +66,7 @@ const Wrapper = styled.div<StyleProps>`
     border: 2px solid #fff;
     p {
       color: #fff;
+      font-family: IRANSans;
     }
   }
 `;

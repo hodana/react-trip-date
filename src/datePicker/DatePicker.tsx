@@ -27,6 +27,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   onChange,
   initialMonthAndYear,
   onRangeDateInScreen,
+  RightButtonComponent,
+  LeftButtonComponent,
 }) => {
   const [selectedDays, setSelectedDays] = useState(selectedDaysProps || []);
   const [numberOfMonths, setNumberOfMonths] = useState(numberOfMonthsProps);
@@ -104,6 +106,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           displayMonths={displayMonths}
           numberOfMonths={numberOfMonths}
           setDisplayMonths={setDisplayMonths}
+          RightButtonComponent={RightButtonComponent}
+          LeftButtonComponent={LeftButtonComponent}
         />
         {displayMonths ? (
           <DisplayMonths
