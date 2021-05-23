@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { DatePickerProps } from "./datePicker.type";
 import { Months } from "./Months";
 
-export const DatePicker: React.FC<DatePickerProps> = ({
+const DatePicker: React.FC<DatePickerProps> = ({
   jalali = false,
   disabled = false,
   autoResponsive = true,
@@ -139,3 +139,4 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     </div>
   );
 };
+export default DatePicker

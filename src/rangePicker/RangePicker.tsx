@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { Months } from "./Months";
 import { RangePickerProps } from "./rangePicker.type";
 
-export const RangePicker = ({
+const RangePicker = ({
   jalali = false,
   startOfWeek = 0,
   numberOfMonths: numberOfMonthsProps = 1,
@@ -134,3 +134,4 @@ export const RangePicker = ({
     </div>
   );
 };
+export default RangePicker
